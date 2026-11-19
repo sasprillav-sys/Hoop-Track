@@ -293,19 +293,62 @@
         <div class="reference-grid">
           <figure class="reference-card">
             <div class="reference-art basketball-art">
-              <img src="assets/hooptrack-entrenamiento.jpeg" alt="Deportistas de Hooptrack practicando baloncesto en la cancha">
+              <button class="reference-image-button" type="button" aria-haspopup="dialog" aria-controls="offer-dialog" aria-label="Ver servicios de entrenamiento Hooptrack" data-offer-intro="Conoce nuestro enfoque de preparación física y formación para jugadores de baloncesto.">
+                <img src="assets/hooptrack-entrenamiento.jpeg" alt="Deportistas practicando baloncesto en la cancha">
+                <span class="image-action" aria-hidden="true">Ver lo que ofrecemos ↗</span>
+              </button>
             </div>
             <figcaption><strong>Entrenamiento en cancha</strong><span>Referencia visual ilustrativa · técnica, movimiento y trabajo en equipo.</span></figcaption>
           </figure>
           <figure class="reference-card">
             <div class="reference-art equipment-art">
-              <img src="assets/hooptrack-implementos.jpeg" alt="Equipo de Hooptrack practicando un lanzamiento a canasta, con balón y tablero">
+              <button class="reference-image-button" type="button" aria-haspopup="dialog" aria-controls="offer-dialog" aria-label="Ver servicios, planes y recursos de Hooptrack" data-offer-intro="Revisa nuestra propuesta de entrenamiento, los recursos de práctica y las opciones de planes que estamos evaluando.">
+                <img src="assets/hooptrack-implementos.jpeg" alt="Jugadores practicando un lanzamiento a canasta, con balón y tablero">
+                <span class="image-action" aria-hidden="true">Ver lo que ofrecemos ↗</span>
+              </button>
             </div>
             <figcaption><strong>Implementos y cancha</strong><span>Referencia visual ilustrativa · balón, canasta y entorno de entrenamiento.</span></figcaption>
           </figure>
         </div>
       </div>
     </section>
+
+    <dialog class="offer-dialog" id="offer-dialog" aria-labelledby="offer-dialog-title">
+      <div class="offer-dialog-content">
+        <button class="offer-dialog-close" type="button" aria-label="Cerrar información">×</button>
+        <p class="eyebrow dark-eyebrow">HOOPTRACK BASKETBALL ACADEMY</p>
+        <h2 id="offer-dialog-title">Todo lo que ofrecemos</h2>
+        <p class="offer-dialog-intro" id="offer-dialog-intro">Conoce nuestro enfoque de preparación física y formación para jugadores de baloncesto.</p>
+        <div class="offer-grid">
+          <article>
+            <h3>Acondicionamiento para baloncesto</h3>
+            <p>Preparación física especializada en las exigencias del baloncesto y orientada al desarrollo del deportista.</p>
+          </article>
+          <article>
+            <h3>Preparación individualizada</h3>
+            <p>Un enfoque que considera la posición de juego, las características de cada jugador y sus objetivos.</p>
+          </article>
+          <article>
+            <h3>Rendimiento y cuidado</h3>
+            <p>Entrenamiento pensado para mejorar el rendimiento y contribuir a reducir el riesgo de lesiones.</p>
+          </article>
+          <article>
+            <h3>Opciones por objetivos</h3>
+            <p>El proyecto contempla alternativas base y de competición. La disponibilidad y las condiciones se deben confirmar con la academia.</p>
+          </article>
+          <article>
+            <h3>Experiencia de entrenamiento</h3>
+            <p>La propuesta considera implementos como balones y petos, además de las condiciones de la cancha y su iluminación. Consulta la disponibilidad de cada recurso.</p>
+          </article>
+          <article>
+            <h3>Información para familias</h3>
+            <p>Contáctanos para conocer horarios, opciones de entrenamiento, tarifas vigentes y resolver tus dudas antes de inscribirte.</p>
+          </article>
+        </div>
+        <p class="offer-pricing-note"><strong>Tarifas de referencia:</strong> el documento registra $140.000 COP como mensualidad actual y propone un plan base de $100.000 COP al mes, 2 días por semana, sin costos de ligas. La propuesta de $100.000 COP está pendiente de validación; confirma el valor y las condiciones vigentes.</p>
+        <a class="button offer-contact-link" href="https://wa.me/573162237690?text=Hola%2C%20quiero%20conocer%20los%20servicios%20y%20planes%20de%20Hooptrack%20Basketball%20Academy." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a>
+      </div>
+    </dialog>
 
     <section class="contact-section" id="contacto" aria-labelledby="contact-title">
       <div class="section-wrap contact-layout">
@@ -390,6 +433,30 @@
   <script>
     const contactForm = document.querySelector("#contact-form");
     const sendContactButton = document.querySelector("#send-contact");
+    const offerDialog = document.querySelector("#offer-dialog");
+    const offerDialogIntro = document.querySelector("#offer-dialog-intro");
+
+    document.querySelectorAll(".reference-image-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        offerDialogIntro.textContent = button.dataset.offerIntro;
+        offerDialog.showModal();
+      });
+    });
+
+    document.querySelector(".offer-dialog-close").addEventListener("click", () => {
+      offerDialog.close();
+    });
+
+    offerDialog.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        offerDialog.close();
+      }
+    });
+
+    offerDialog.addEventListener("click", (event) => {
+      if (event.target === offerDialog) offerDialog.close();
+    });
 
     sendContactButton.addEventListener("click", () => {
       if (!contactForm.reportValidity()) return;

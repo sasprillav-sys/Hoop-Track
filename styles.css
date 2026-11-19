@@ -1025,6 +1025,7 @@ h2 {
 }
 
 .reference-art {
+  position: relative;
   aspect-ratio: 640 / 340;
   overflow: hidden;
 }
@@ -1044,6 +1045,43 @@ h2 {
 .reference-art img {
   object-fit: cover;
   object-position: center;
+}
+
+.reference-image-button {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.reference-image-button:focus-visible {
+  z-index: 1;
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+}
+
+.image-action {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 8px 11px;
+  background: rgba(22, 29, 25, .88);
+  color: var(--white);
+  font-size: 9px;
+  font-weight: 700;
+  transition: background .2s ease, color .2s ease;
+}
+
+.reference-image-button:hover .image-action,
+.reference-image-button:focus-visible .image-action {
+  background: var(--accent);
+  color: var(--ink);
 }
 
 .reference-card:hover .reference-art svg,
@@ -1070,6 +1108,103 @@ h2 {
   color: var(--muted);
   font-size: 10px;
   line-height: 1.5;
+}
+
+.offer-dialog {
+  width: min(760px, calc(100vw - 32px));
+  max-width: 760px;
+  max-height: 88vh;
+  padding: 0;
+  overflow: auto;
+  border: 1px solid #d6d8d0;
+  background: #f6f5f0;
+  color: var(--ink);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .28);
+}
+
+.offer-dialog::backdrop {
+  background: rgba(17, 24, 21, .74);
+  backdrop-filter: blur(3px);
+}
+
+.offer-dialog-content {
+  position: relative;
+  padding: clamp(24px, 5vw, 45px);
+}
+
+.offer-dialog-close {
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.offer-dialog-close:hover {
+  background: var(--accent);
+}
+
+.offer-dialog h2 {
+  max-width: 560px;
+  padding-right: 36px;
+}
+
+.offer-dialog-intro {
+  max-width: 600px;
+  margin: 12px 0 22px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.offer-grid article {
+  padding: 16px;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.offer-grid h3 {
+  margin: 0 0 7px;
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+
+.offer-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.offer-pricing-note {
+  margin: 14px 0;
+  padding: 14px;
+  background: #ebe9e1;
+  color: #565b5b;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.offer-pricing-note strong {
+  color: var(--ink);
+}
+
+.offer-contact-link {
+  margin-top: 3px;
 }
 
 .contact-section {
@@ -1688,6 +1823,23 @@ h2 {
   .reference-grid {
     grid-template-columns: 1fr;
     gap: 15px;
+  }
+
+  .offer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .offer-dialog {
+    max-height: 90vh;
+  }
+
+  .offer-dialog-content {
+    padding: 25px 19px;
+  }
+
+  .offer-dialog-close {
+    top: 11px;
+    right: 11px;
   }
 
   .contact-section {
