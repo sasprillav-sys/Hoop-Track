@@ -745,11 +745,30 @@ h2 {
 
 .recommendations li {
   min-height: 67px;
+  border-top: 1px solid rgba(255, 255, 255, .15);
+}
+
+.recommendation-details > summary {
+  min-height: 66px;
   display: grid;
-  grid-template-columns: 34px 1fr 18px;
+  grid-template-columns: 34px minmax(0, 1fr) 18px;
   align-items: center;
   gap: 11px;
-  border-top: 1px solid rgba(255, 255, 255, .15);
+  cursor: pointer;
+  list-style: none;
+}
+
+.recommendation-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.recommendation-details > summary::marker {
+  content: "";
+}
+
+.recommendation-details > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .list-index {
@@ -775,8 +794,41 @@ h2 {
 }
 
 .list-arrow {
+  justify-self: center;
   color: var(--accent);
   font-size: 15px;
+  transition: transform .2s ease;
+}
+
+.recommendation-details[open] .list-arrow {
+  transform: rotate(90deg);
+}
+
+.recommendation-stats {
+  margin: -2px 18px 17px 45px;
+  padding: 13px 15px;
+  border-left: 2px solid var(--accent);
+  background: rgba(255, 255, 255, .06);
+}
+
+.recommendation-stats p {
+  margin: 0 0 8px;
+  color: #c5cec8;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.recommendation-stats p:last-child {
+  margin-bottom: 0;
+}
+
+.stats-label {
+  margin-bottom: 7px;
+  display: block;
+  color: var(--accent);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .12em;
 }
 
 .channels-heading {
@@ -1606,8 +1658,15 @@ h2 {
     margin-top: 24px;
   }
 
-  .recommendations li {
+  .recommendations li,
+  .recommendation-details > summary {
     min-height: 73px;
+  }
+
+  .recommendation-stats {
+    margin-left: 35px;
+    margin-right: 0;
+    padding: 12px;
   }
 
   .channels-layout {
